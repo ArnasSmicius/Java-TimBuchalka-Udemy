@@ -70,9 +70,9 @@ public class Locations implements Map<Integer, Location> {
 //            System.out.println("IO exception");
 //        }
 
-        try(ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream("locations.dat")))){
+        try(ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream("locations.dat")))) {
             boolean eof = false;
-            while(!eof) {
+            while (!eof) {
                 try {
                     Location location = (Location) locFile.readObject();
                     System.out.println("Read location " + location.getLocationID() + " : " + location.getDescription());
@@ -82,6 +82,8 @@ public class Locations implements Map<Integer, Location> {
                     eof = true;
                 }
             }
+        } catch(InvalidClassException e) {
+            System.out.println("Invalid class exception " + e.getMessage());
         } catch(IOException e) {
             System.out.println("IO exception " + e.getMessage());
         } catch(ClassNotFoundException e) {

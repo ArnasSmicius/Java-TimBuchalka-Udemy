@@ -1,14 +1,13 @@
 package com.timbuchalka;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * Created by dev on 8/12/2015.
  */
-public class Location implements Serializable {
+public class Location implements Serializable{
     private final int locationID;
     private final String description;
     private final Map<String, Integer> exits;
@@ -26,9 +25,9 @@ public class Location implements Serializable {
         this.exits.put("Q", 0);
     }
 
-    protected void addExit(String direction, int location) {
-        exits.put(direction, location);
-    }
+//    public void addExit(String direction, int location) {
+//        exits.put(direction, location);
+//    }
 
     public int getLocationID() {
         return locationID;
@@ -40,5 +39,8 @@ public class Location implements Serializable {
 
     public Map<String, Integer> getExits() {
         return new LinkedHashMap<String, Integer>(exits);
+    }
+    protected void addExit(String direction, int location) {
+        exits.put(direction, location);
     }
 }

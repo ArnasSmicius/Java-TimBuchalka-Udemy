@@ -3,14 +3,37 @@ package com.timbuchalka;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 
 public class Main {
 
     public static void main(String[] args) {
 
         try {
-            Path fileToDelete = FileSystems.getDefault().getPath("Examples", "Dir1", "file1copy.txt");
-            Files.deleteIfExists(fileToDelete);
+
+            Path filePath = FileSystems.getDefault().getPath("Examples/Dir1/file1.txt");
+            long fileSize = Files.size(filePath);
+            System.out.println("Size = " + fileSize);
+            System.out.println("Last modified = " + Files.getLastModifiedTime(filePath).toString());
+
+            BasicFileAttributes attrs = Files.readAttributes(filePath,BasicFileAttributes.class);
+            System.out.println("Size = " + attrs.size());
+            System.out.println("Last modified = " + attrs.lastModifiedTime());
+            System.out.println("Created = " + attrs.creationTime());
+            System.out.println("Is directory = " + attrs.isDirectory());
+            System.out.println("Is regular file = " + attrs.isRegularFile());
+
+//            Path dirToCreate = FileSystems.getDefault().getPath("Examples", "Dir2/Dir3/Dir4/Dir5/Dir6");
+//            Files.createDirectories(dirToCreate);
+
+//            Path dirToCreate = FileSystems.getDefault().getPath("Examples", "Dir4");
+//            Files.createDirectory(dirToCreate);
+
+//            Path fileToCreate = FileSystems.getDefault().getPath("Examples", "file2.txt");
+//            Files.createFile(fileToCreate);
+
+//            Path fileToDelete = FileSystems.getDefault().getPath("Examples", "Dir1", "file1copy.txt");
+//            Files.deleteIfExists(fileToDelete);
 
 //            Path fileToMove = FileSystems.getDefault().getPath("Examples", "file1.txt");
 //            Path destination = FileSystems.getDefault().getPath("Examples", "file1.txt");

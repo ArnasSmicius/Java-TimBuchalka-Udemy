@@ -3,7 +3,7 @@ package com.timbuchalka;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-	    final BankAccount account = new BankAccount("12345-678", 1000.00);
+	    final BankAccount1 account = new BankAccount1("12345-678", 1000.00);
 
         Thread person1 = new Thread() {
             @Override
